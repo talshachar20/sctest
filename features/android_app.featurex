@@ -33,15 +33,26 @@ Feature: Playback feature
     When click on the first song under Track Charts
     And turn off wifi and mobile data on device
     Then error message shows network problem
-    And song keeps playing
+    And song keeps playing (as mush as it loaded)
 
   Scenario: Playback on the background
-    When click on the first song under Track Charts
+    When click on the second song under Track Charts
     And click on the Home device button
     Then song keeps playing
     And notification appears on the device
 
   Scenario: Playback stops when force quitting
+    When click on the third song under Track Charts
+    And click on android open apps function
+    AND close the juke app
+    Then song stops playing
+    And juke service was terminated
 
+  Background:
+    Given user login with correct credentials
+    And navigate to Track Charts tab
 
-  Scenario: Playback while login
+  Scenario: Playback with login (subscribe user)
+    When click on the first song under Track Charts
+    Then full song starts playing
+    And no preview mode message appears
