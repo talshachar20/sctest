@@ -22,7 +22,7 @@ Then /^chosen product is "(.*)"/ do |product|
   expect(product_text).to include(product)
 end
 
-And /^user can buy the movie in HD via PayPal/ do
+And /^user can buy the movie in HD via PayPal/ do #Method can be expended by each payment method and it's link
   @product_page.click_on_price_button(1)
   @product_page.choose_payment_metnod('PayPal')
   @product_page.order_product

@@ -14,7 +14,7 @@ class BasePage
     @driver.find_element(locator)
   end
 
-  def click_by_index(locator, element_index)
+  def click_by_index(locator, element_index) # needed to use java script for a specific element which wasnt caught by selenium
     @driver.execute_script("document.getElementsByClassName('#{locator}')[#{element_index}].click();")
   end
 
