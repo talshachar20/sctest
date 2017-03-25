@@ -1,0 +1,47 @@
+#encoding: utf-8
+
+Feature: Playback feature
+
+  Background:
+  Given Open juke application on Android
+  And navigate to Track Charts tab
+
+  Scenario: Playback when user is not login
+    When click on the first song under Track Charts
+    Then 30 seconds songs preview starts playing
+    And preview message presented with a link to the register form
+
+  Scenario: Controllers functionality when a song is playing
+    When click on the first song under Track Charts
+    And navigate to playback section
+    And pressing on '<controller>'
+    Then playback '<playback_result>'
+
+    Examples:
+    | controller | playback_result                   |
+    | pause      | stops and icon set to play        |
+    | play       | continues from the same spot      |
+    | forward    | plays next song on the list       |
+    | backwards  | plays previous song on the list   |
+
+  Scenario: Playback without network
+    When turn off wifi and mobile data on device
+    And click on the first song under Track Charts
+    Then error message shows network problem
+
+  Scenario: Disconnect network while playing
+    When click on the first song under Track Charts
+    And turn off wifi and mobile data on device
+    Then error message shows network problem
+    And song keeps playing
+
+  Scenario: Playback on the background
+    When click on the first song under Track Charts
+    And click on the Home device button
+    Then song keeps playing
+    And notification appears on the device
+
+  Scenario: Playback stops when force quitting
+
+
+  Scenario: Playback while login
