@@ -11,6 +11,15 @@ Feature: Playback feature
     Then 30 seconds songs preview starts playing
     And preview message presented with a link to the register form
 
+  Background:
+    Given user login with correct credentials
+    And navigate to Track Charts tab
+
+  Scenario: Playback with login (subscribe user)
+    When click on the first song under Track Charts
+    Then full song starts playing
+    And no preview mode message appears
+
   Scenario: Controllers functionality when a song is playing
     When click on the first song under Track Charts
     And navigate to playback section
@@ -48,11 +57,4 @@ Feature: Playback feature
     Then song stops playing
     And juke service was terminated
 
-  Background:
-    Given user login with correct credentials
-    And navigate to Track Charts tab
-
-  Scenario: Playback with login (subscribe user)
-    When click on the first song under Track Charts
-    Then full song starts playing
-    And no preview mode message appears
+  Comment: Tests of main functionality should be run on common devices / Android & IOS versions
