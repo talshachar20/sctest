@@ -3,7 +3,11 @@ this project tests user flows in Juke web and mobile application
 framework: Ruby, Selenium webdriver, Cucumber and Rspec expectations.
 
 ## how to run ##
-'bundle exec cucumber' for running the test (will run buy movie and search product)
+```
+bundle install
+bundle exec cucumber
+```
+for running the test (will run buy movie and search product)
 the Scenarios for mobile application are in android_app.featurex file
 
 ## open issues ##
